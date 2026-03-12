@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { FaChevronRight, FaHome } from "react-icons/fa";
 
 const pageImages = {
-  "About Us":         "https://images.unsplash.com/...",
-  "Services":         "https://images.unsplash.com/...",
-  "Meet Our Experts": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=2000&q=80",  // ✅ already there
-  "Testimonials":     "https://images.unsplash.com/...",
-  "Contact":          "https://images.unsplash.com/...",
+  "About Us":         "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1400&q=75",
+  "Services":         "https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&fit=crop&w=1400&q=75",
+  "Meet Our Experts": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1400&q=75",
+  "Testimonials":     "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1400&q=75",
+  "Contact":          "https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1400&q=75",
 };
 
 const PageHero = ({ title, subtitle, bgImage, breadcrumbs = [] }) => {
@@ -16,10 +16,13 @@ const PageHero = ({ title, subtitle, bgImage, breadcrumbs = [] }) => {
 
   return (
     <section className="relative h-[420px] md:h-[480px] flex items-center overflow-hidden font-sans">
+
       {/* Background */}
       <img
         src={backgroundImage}
         alt={title}
+        fetchpriority="high"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover"
       />
 
@@ -64,9 +67,7 @@ const PageHero = ({ title, subtitle, bgImage, breadcrumbs = [] }) => {
                 <React.Fragment key={i}>
                   <FaChevronRight size={10} className="text-white/40" />
                   {isLast ? (
-                    <span className="text-white/70 text-sm">
-                      {crumb.label}
-                    </span>
+                    <span className="text-white/70 text-sm">{crumb.label}</span>
                   ) : (
                     <Link
                       to={crumb.href}
@@ -88,6 +89,7 @@ const PageHero = ({ title, subtitle, bgImage, breadcrumbs = [] }) => {
         <div className="w-1.5 h-1.5 rounded-full bg-accent" />
         <div className="w-px h-20 bg-white/20" />
       </div>
+
     </section>
   );
 };
