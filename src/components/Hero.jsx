@@ -4,8 +4,7 @@ import AppointmentButton from "./AppointmentButton";
 
 const slides = [
   {
-    image:
-      "https://preview.redd.it/dental-clinic-interior-design-latest-interiors-v0-niaih3ygq4da1.jpg?width=3000&format=pjpg&auto=webp&s=080c992b8d88f4a91f518de53f1533c01f599209",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=75",
     heading: (
       <>
         Crafting Confident{" "}
@@ -20,8 +19,7 @@ const slides = [
       "At Smile Craft, we combine advanced dental technology with compassionate care to deliver healthy, radiant smiles that last a lifetime.",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=2000&q=80",
+    image: "https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&fit=crop&w=1600&q=75",
     heading: (
       <>
         Your{" "}
@@ -71,6 +69,8 @@ const HeroSection = ({ onBookClick }) => {
           key={i}
           src={slide.image}
           alt={`Slide ${i + 1}`}
+          fetchpriority={i === 0 ? "high" : "low"}
+          decoding="async"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
             i === current ? "opacity-100" : "opacity-0"
           }`}
@@ -98,9 +98,28 @@ const HeroSection = ({ onBookClick }) => {
           </p>
 
           <div className="mt-8">
-            <AppointmentButton label="Make Appointment"  className="md:col-span-2 justify-self-center mt-4" onClick={onBookClick}/>
+            <AppointmentButton
+              label="Make Appointment"
+              className="md:col-span-2 justify-self-center mt-4"
+              onClick={onBookClick}
+            />
           </div>
         </div>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-4">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            className={`transition-all duration-300 ${
+              i === current
+                ? "w-10 h-[3px] bg-accent"
+                : "w-5 h-[2px] bg-white/40 hover:bg-white/70"
+            }`}
+          />
+        ))}
       </div>
 
       {/* Prev / Next */}
